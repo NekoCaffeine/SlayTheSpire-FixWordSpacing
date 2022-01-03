@@ -63,7 +63,7 @@ public class Initializer {
     static {
         TEXT_PROViDER_MAPPING.put("com/megacrit/cardcrawl/cards/AbstractCard", new TextProvider("rawDescription", HAS_CN_STRING));
         TEXT_PROViDER_MAPPING.put("com/megacrit/cardcrawl/cutscenes/NeowNarrationScreen", new TextProvider("words", HAS_CN_LIST));
-        TEXT_PROViDER_MAPPING.put("com/megacrit/cardcrawl/events/GenericEventDialog", new TextProvider("words", HAS_CN_LIST));
+        TEXT_PROViDER_MAPPING.put("com/megacrit/cardcrawl/events/GenericEventDialog", new TextProvider("_text", HAS_CN_LIST));
         TEXT_PROViDER_MAPPING.put("com/megacrit/cardcrawl/events/RoomEventDialog", new TextProvider("words", HAS_CN_LIST));
         TEXT_PROViDER_MAPPING.put("com/megacrit/cardcrawl/vfx/MegaDialogTextEffect", new TextProvider("words", HAS_CN_LIST));
         TEXT_PROViDER_MAPPING.put("com/megacrit/cardcrawl/vfx/SpeechTextEffect", new TextProvider("words", HAS_CN_LIST));
