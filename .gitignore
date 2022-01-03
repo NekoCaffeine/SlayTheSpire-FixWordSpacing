@@ -1,0 +1,7 @@
+/logs/
+/dump/
+/build/output/
+/build/compiled-script/
+/.idea/
+*.iml
+/build/STSConfig.default.cfg
