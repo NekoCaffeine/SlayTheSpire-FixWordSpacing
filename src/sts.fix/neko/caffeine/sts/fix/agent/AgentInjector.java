@@ -16,9 +16,9 @@ import static java.nio.file.StandardOpenOption.*;
 public interface AgentInjector {
     
     Attributes.Name
-            AGENT_CLASS = { "Agent-Class" },
+            AGENT_CLASS             = { "Agent-Class" },
             CAN_RETRANSFORM_CLASSES = { "Can-Retransform-Classes" },
-            CAN_REDEFINE_CLASSES = { "Can-Redefine-Classes" };
+            CAN_REDEFINE_CLASSES    = { "Can-Redefine-Classes" };
     
     static void inject(final String prefix, final Class<?> agent, final Class<?>... resources) throws IOException = JNI.Instrument.attachAgent(generateAgentJar(prefix, agent, resources));
     

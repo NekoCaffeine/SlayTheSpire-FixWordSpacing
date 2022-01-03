@@ -60,7 +60,7 @@ public interface Build {
     static void build() {
         workspace.clean(module).flushMetadata();
         Javac.compile(workspace, module, _ -> true, args -> args += "-XDstringConcat=inline");
-        final Path classes = workspace.output(Javac.CLASSES_DIR, module) / module.name(), shadow = classes/ "neko/caffeine/sts/fix";
+        final Path classes = workspace.output(Javac.CLASSES_DIR, module) / module.name(), shadow = classes / "neko/caffeine/sts/fix";
         (classes / Jar.MODULE_INFO)--;
         Files.walkFileTree(classes, FileHelper.visitor(
                 (path, _) -> Files.write(path, Files.readAllBytes(path).let(bytecode -> bytecode[7] = 52)),
