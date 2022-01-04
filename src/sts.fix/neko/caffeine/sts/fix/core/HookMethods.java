@@ -13,7 +13,7 @@ public class HookMethods {
     
     public static final Pattern hasZN = Pattern.compile("[\u4e00-\u9fa5]");
     
-    public static boolean hasZN(final String text) = hasZN.matcher(text).find();
+    public static boolean hasZN(final String text) = text != null && hasZN.matcher(text).find();
     
     public static boolean hasZN(final List<?> text) {
         for (final Object obj : text) {

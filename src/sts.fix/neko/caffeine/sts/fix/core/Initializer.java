@@ -63,7 +63,7 @@ public class Initializer {
     static {
         TEXT_PROViDER_MAPPING.put("com/megacrit/cardcrawl/cards/AbstractCard", new TextProvider("rawDescription", HAS_CN_STRING));
         TEXT_PROViDER_MAPPING.put("com/megacrit/cardcrawl/cutscenes/NeowNarrationScreen", new TextProvider("words", HAS_CN_LIST));
-        TEXT_PROViDER_MAPPING.put("com/megacrit/cardcrawl/events/GenericEventDialog", new TextProvider("_text", HAS_CN_LIST));
+        TEXT_PROViDER_MAPPING.put("com/megacrit/cardcrawl/events/GenericEventDialog", new TextProvider("optionList", HAS_CN_LIST));
         TEXT_PROViDER_MAPPING.put("com/megacrit/cardcrawl/events/RoomEventDialog", new TextProvider("words", HAS_CN_LIST));
         TEXT_PROViDER_MAPPING.put("com/megacrit/cardcrawl/vfx/MegaDialogTextEffect", new TextProvider("words", HAS_CN_LIST));
         TEXT_PROViDER_MAPPING.put("com/megacrit/cardcrawl/vfx/SpeechTextEffect", new TextProvider("words", HAS_CN_LIST));
@@ -108,19 +108,6 @@ public class Initializer {
                             final ClassNode node = { };
                             final ClassReader reader = { bytecode };
                             reader.accept(node, 0);
-                            switch (className) {
-                                case "com/megacrit/cardcrawl/events/GenericEventDialog" -> {
-                                    final FieldNode _text = new FieldNode(ACC_PUBLIC | ACC_STATIC, "_text", Type.getDescriptor(String.class), null, "");
-                                    node.fields.add(_text);
-                                    for (final MethodNode method : node.methods)
-                                        if (method.name.equals("updateBodyText")) {
-                                            final InsnList inject = new InsnList();
-                                            inject.add(new VarInsnNode(ALOAD, 1));
-                                            inject.add(new FieldInsnNode(PUTSTATIC, node.name, _text.name, _text.desc));
-                                            method.instructions.insert(inject);
-                                        }
-                                }
-                            }
                             for (final MethodNode method : node.methods) {
                                 final Map<FieldInsnNode, InsnList> fieldsRedirect = new HashMap<>();
                                 for (final AbstractInsnNode insnNode : method.instructions) {
@@ -134,8 +121,7 @@ public class Initializer {
                                                 throw new RuntimeException(new NullPointerException("provider: " + node.name + "#" + method.name));
                                             if (provider.text.getClass() == String.class) {
                                                 final String fieldName = (String) provider.text;
-                                                final FieldNode field = node.fields.stream().filter(fieldNode -> fieldNode.name.equals(fieldName))
-                                                        .findAny().orElseThrow(NullPointerException::new);
+                                                final FieldNode field = node.fields.stream().filter(fieldNode -> fieldNode.name.equals(fieldName)).findAny().orElseThrow(NullPointerException::new);
                                                 if ((field.access & ACC_STATIC) != 0) {
                                                     redirect.add(new FieldInsnNode(GETSTATIC, node.name, fieldName, field.desc));
                                                 } else {

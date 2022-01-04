@@ -1,14 +1,9 @@
 {
-  "modid": "sts_fix",
+  "modid": "fixWordSpacing",
   "name": "FixWordSpacing(修复单词间距)",
-  "author_list": [
-    "NekoCaffeine"
-  ],
-  "credits": "",
+  "author_list": [ "NekoCaffeine" ],
   "description": "Fixed the Chinese mode word spacing issue. 修复中文模式下单词间距问题。",
   "version": "1.0.0",
-  "sts_version": "12-22-2020",
-  "mts_version": "3.7.0",
-  "dependencies": [],
-  "update_json": ""
+  "mts_version": "3.22.0",
+  "dependencies": []
 }
